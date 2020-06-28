@@ -9,31 +9,13 @@ namespace pong{
         private float xVelocity = 5.0f;
         [SerializeField]
         private float yVelocity = 3.0f;
-        private Vector3 _Direction;
-        public Vector3 Direction{ get; set;}
 
-        // Start is called before the first frame update
-        void Awake()
-        {
-            Direction = Vector3.zero;
-            Launch();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            // this.transform.position += new Vector3( 
-            //     Direction.x * xVelocity,
-            //     Direction.y * yVelocity,
-            //     Direction.z
-            // ) * Time.deltaTime;
-        }
-
-        private void Launch(){
-            float x = Random.Range(0,2) == 0 ? -1: 1;
-            float y = Random.Range(0,2) == 0 ? -1: 1;
+        //TODO: Prevent velocity became too low
+        public void Launch(Vector3 targetpos){
+            var heading = this.transform.position - targetpos;
+            var dir = heading / heading.magnitude;
             this.gameObject.GetComponent<Rigidbody2D>().velocity = 
-                new Vector2(xVelocity * x, yVelocity * y);
+                new Vector2(xVelocity * dir.x, yVelocity * dir.y);
         }
 
     }
