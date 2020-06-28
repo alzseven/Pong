@@ -6,33 +6,22 @@ using UnityEngine.UI;
 namespace pong{
     public class Goal : MonoBehaviour
     {
-        [SerializeField]
-        private int curScore = 0;
-        [SerializeField]
-        private Text scoreText;
-        [SerializeField]
-        private GameManager gm;
-        // Start is called before the first frame update
-        void Awake()
-        {
-            ScoreUpdate();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
-        void ScoreUpdate(){
-            scoreText.text = curScore.ToString();
-        }
+        //TODO: FIX ALL
+        [SerializeField] private GameManager gm;
+        /// <summary>Which(left or right) side of the screen contains gameobject.</summary>
+        [SerializeField] private string pos;
 
         void OnTriggerEnter2D(Collider2D collider) {
             if(collider.tag == "Ball"){
-                curScore++;
-                ScoreUpdate();
-                Destroy(collider.gameObject);
+                collider.gameObject.SetActive(false);
                 gm.isReady = true;
+                gm.targetPos = - this.transform.position;
+                if(pos == "right"){
+                    gm.LeftScored();
+                }
+                else if(pos == "left"){
+                    gm.RightScored();
+                }
             }
         }
     }
