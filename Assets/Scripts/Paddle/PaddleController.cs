@@ -12,7 +12,7 @@ namespace pong{
         private IPaddelInput paddleInput;
 
         void Awake() => SetInput();
-        // Update is called once per frame
+
         void Update()
         {
             paddleInput.ReadInput();

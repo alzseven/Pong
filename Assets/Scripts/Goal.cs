@@ -8,6 +8,7 @@ namespace pong{
     {
         //TODO: FIX ALL
         [SerializeField] private GameManager gm;
+        /// <summary>Which(left or right) side of the screen contains gameobject.</summary>
         [SerializeField] private string pos;
 
         void OnTriggerEnter2D(Collider2D collider) {

@@ -7,7 +7,7 @@ namespace pong{
     {
         private string axisName;
         public float VertDir { get; private set; }
-
+        
         public PlayerInput(string _axisName) => axisName = _axisName;
         public void ReadInput() => VertDir = Input.GetAxisRaw(axisName);
     }
