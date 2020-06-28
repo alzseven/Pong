@@ -6,9 +6,12 @@ using UnityEngine.UI;
 namespace pong{
     public class GameManager : MonoBehaviour
     {
+        //TODO: FIX ALL... But How? :C
         [SerializeField]
         private GameObject Ball;
         public bool isReady = true;
+
+        private bool isOver = false;
 
         [Header("Player_Left")]
         [SerializeField]
@@ -35,7 +38,8 @@ namespace pong{
         // Update is called once per frame
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space) && isReady){
+            if(Input.GetKeyDown(KeyCode.Space) && isReady && !isOver){
+
                 //TODO: Time Delay + AutoMatically
                 var launchpos_y =  Random.Range(0,2) == 0? Random.Range(-5.0f,-3.0f) : Random.Range(3.0f, 5.0f);
                 Ball.transform.position = new Vector3(0.0f, launchpos_y, 0.0f);
@@ -53,11 +57,20 @@ namespace pong{
         public void LeftScored(){
             leftScore++;
             ScoreUpdate();
+            isEleven(leftScore,leftText);
         }
 
         public void RightScored(){
             rightScore++;
             ScoreUpdate();
+            isEleven(rightScore,rightText);
+        }
+
+        void isEleven(int curScore, Text text){
+            if(curScore == 11){
+                isOver = true;
+                text.text = "Win!";
+            } 
         }
     }
 }
