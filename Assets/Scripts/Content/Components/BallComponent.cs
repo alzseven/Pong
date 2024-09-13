@@ -13,7 +13,6 @@ namespace Content.Components
         [SerializeField] private float ballYMax;
         [SerializeField] private float ballYMin;
         [SerializeField] private float movementSpeed;
-        //0.3240741 ~ 0.462963
         [Header("Sound")]
         [SerializeField] private SoundComponent sfxComponent;
         [SerializeField] private AudioClip wallHitSound;
