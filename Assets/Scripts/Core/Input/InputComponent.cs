@@ -7,62 +7,25 @@ namespace Core.Input
 {
     public class InputComponent : MonoBehaviour
     {
-        private Dictionary<BaseInputAction, string> inputActionKeyMapping = new();
-        private Dictionary<string, Action<InputValue>> keyCallbackMapping = new();
+        private Dictionary<BaseInputAction, Action<InputValue>> _inputActionMapping = new();
         
         public void BindAction(BaseInputAction action, Action<InputValue> callback)
         {
-            var actionName = action.name;
-            if (inputActionKeyMapping.TryAdd(action, actionName))
-            {
-                if (keyCallbackMapping.TryAdd(actionName, callback))
-                {
-                    // keyCallbackMapping[actionName] += callback;
-                }
-                else
-                {
-                    //Something wrong?
-                }
-            }
-            else
-            {
-                // there's already same action
-                if (keyCallbackMapping.TryAdd(actionName, callback))
-                {
-                    // keyCallbackMapping[actionName] += ;
-                }
-                else
-                {
-                    //Something wrong?
-                }
-            }
+            if (_inputActionMapping.TryAdd(action, callback) == false) _inputActionMapping[action] = callback;
         }
         
         public bool TryRemoveBinding(BaseInputAction action, Action<InputValue> callback)
         {
-            var actionName = action.name;
-            if (keyCallbackMapping.TryGetValue(actionName, out _))
-            {
-                keyCallbackMapping.Remove(actionName);
-            }
-            else
-            {
-                return false;
-                //Something wrong?
-            }
+            if (!_inputActionMapping.TryGetValue(action, out _)) return false;
+            _inputActionMapping[action] -= callback;
             return true;
         }
         
         private void Update()
         {
-            foreach (var (action, key) in inputActionKeyMapping)
-            {
+            foreach (var (action, callback) in _inputActionMapping)
                 if (action.IsActionInvoked())
-                {
-                    if(keyCallbackMapping.TryGetValue(key, out var callback))
-                        callback?.Invoke(action.GetInputValue());
-                }
-            }
+                    callback?.Invoke(action.GetInputValue());
         }
     }
 }
