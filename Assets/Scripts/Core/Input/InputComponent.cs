@@ -7,14 +7,14 @@ namespace Core.Input
 {
     public class InputComponent : MonoBehaviour
     {
-        private Dictionary<BaseInputAction, Action<InputValue>> _inputActionMapping = new();
+        private readonly Dictionary<IInputAction<InputValue>, Action<InputValue>> _inputActionMapping = new();
         
-        public void BindAction(BaseInputAction action, Action<InputValue> callback)
+        public void BindAction(IInputAction<InputValue> action, Action<InputValue> callback)
         {
             if (_inputActionMapping.TryAdd(action, callback) == false) _inputActionMapping[action] = callback;
         }
         
-        public bool TryRemoveBinding(BaseInputAction action, Action<InputValue> callback)
+        public bool TryRemoveBinding(IInputAction<InputValue> action, Action<InputValue> callback)
         {
             if (!_inputActionMapping.TryGetValue(action, out _)) return false;
             _inputActionMapping[action] -= callback;
