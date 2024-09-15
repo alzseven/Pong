@@ -1,4 +1,5 @@
-﻿using System;
+﻿// 0.0.1
+using System;
 using UnityEngine;
 
 namespace Core.Input.InputActions
@@ -14,7 +15,7 @@ namespace Core.Input.InputActions
         public override bool IsActionInvoked() => GetInputValue().BoolValue;
 
         public override InputValue GetInputValue() =>
-            InputCondition switch
+            inputCondition switch
             {
                 EInputCondition.Up => new InputValue { BoolValue = UnityEngine.Input.GetKeyUp(keyCode) },
                 EInputCondition.Down => new InputValue { BoolValue = UnityEngine.Input.GetKeyDown(keyCode) },

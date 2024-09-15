@@ -1,4 +1,5 @@
-﻿namespace Core.Input.InputActions
+﻿// 0.0.1
+namespace Core.Input.InputActions
 {
     public enum EInputCondition
     {

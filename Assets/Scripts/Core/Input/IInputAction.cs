@@ -1,4 +1,5 @@
-﻿namespace Core.Input
+﻿// 0.0.1
+namespace Core.Input
 {
     public interface IInputAction<T>
     {

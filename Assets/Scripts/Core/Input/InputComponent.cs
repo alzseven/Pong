@@ -1,6 +1,6 @@
-﻿using System;
+﻿// 0.0.1
+using System;
 using System.Collections.Generic;
-using Core.Input.InputActions;
 using UnityEngine;
 
 namespace Core.Input

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db12c58c2921ae4a9f0e3b2ed801a99, type: 3}
   m_Name: MoveUpDownWSAction
   m_EditorClassIdentifier: 
-  InputCondition: 2
-  CanBeInvokedDuringPause: 0
+  inputCondition: 2
   positiveKeyCode: 119
   negativeKeyCode: 115
