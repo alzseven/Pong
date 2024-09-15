@@ -2,7 +2,7 @@
 
 namespace Core.Input.InputActions
 {
-    public class BaseInputAction : ScriptableObject, IInputAction<InputValue>
+    public abstract class BaseInputAction : ScriptableObject, IInputAction<InputValue>
     {
         public EInputCondition InputCondition;
         
